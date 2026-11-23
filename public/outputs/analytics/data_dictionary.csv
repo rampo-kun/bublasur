@@ -1,0 +1,9 @@
+Table,Field,Type,Unit,Provenance,Description
+copper_df / nickel_df / aluminium_df,price_usd_t,float,USD/tonne,OBSERVED,Monthly LME base metal settlement price
+copper_df / nickel_df / aluminium_df,price_inr_t,float,INR/tonne,DERIVED,price_usd_t * usd_inr_monthly_mean
+steel_df,HR coil 2.5mm (Rs/t) / CR coil 0.63mm (Rs/t),float,INR/tonne (incl. GST),OBSERVED,Mumbai retail steel prices from Ministry of Steel reports
+resin_df,price_usd_kg / price_usd_t,float,USD/kg & USD/tonne,OBSERVED / DERIVED,Irregular IMARC resin price observations (n=17)
+rubber_df,price_inr_100kg / price_inr_t,float,INR/100kg & INR/tonne,OBSERVED / DERIVED,Annual FY RSS-4 Kottayam natural rubber average price
+freight_df,freight_usd_40ft,float,USD/40ft container,OBSERVED,Global 40ft container freight index (165 sequential obs; Date_Raw has 1d auto-fill error)
+fx_df / fx_monthly,usd_inr,float,INR/USD,OBSERVED / DERIVED,RBI Reference Rate with Interbank Close fallback
+sc_indicators,Suez_Activity_ZScore,float,Z-Score,DERIVED,Standardised deviation of monthly Suez Canal daily avg vessels

@@ -1,0 +1,2 @@
+Material,Forecast_Date,Horizon,Predicted_Value,Latest_Observed,Observed_Min,Observed_Max,Unit,Model_PI_95_Lower,Model_PI_95_Upper,Approx_Range_Lower,Approx_Range_Upper,Interval_Methodology,Interval_Calibration_Status,Selected_Model,Validation_RMSE,Holdout_RMSE,Holdout_MAPE_Pct,Training_Period,Forecast_Status,Provenance,Data_Quality_Warning
+resin,UNAVAILABLE,N/A,,1.75,1.13,1.75,USD/kg,,,,,UNAVAILABLE,NOT_APPLICABLE,NONE,,,,2024-06-01 to 2026-09-01,NOT_RECOMMENDED,OBSERVED_SUMMARY_ONLY,Only 17 irregular observations (28d-183d gaps)

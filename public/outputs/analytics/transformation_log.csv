@@ -1,0 +1,9 @@
+Dataset,Raw_File,Transformation,Original_Unit,Output_Unit,Rows_In,Rows_Out,Audit_Note
+Forex,Forex Exchange Rate (inr - usd).xlsx,RBI Ref with Interbank Close fallback; dedupe; monthly mean/end,INR/USD (Daily),INR/USD (Daily & Monthly),6319,6259,No synthetic interpolation
+Copper,Copper Price.xlsx,Header parsed; MonthEnd aligned; INR derived,USD/tonne,USD/t & INR/t,157,154,Monthly observed
+Nickel,Nickel Price List.xlsx,Header parsed; MonthEnd aligned; INR derived,USD/tonne,USD/t & INR/t,156,154,Monthly observed
+Aluminium,Aluminium Price.xlsx,Unpivoted multi-year blocks; INR derived,USD/tonne,USD/t & INR/t,51,155,Monthly observed
+Steel HR/CR,Steel_Price_Dataset_2021-2026.xlsx,Parsed Ministry of Steel sheet; preserved Iron Ore/Coking Coal blanks,INR/tonne incl. GST,INR/tonne incl. GST,73,69,Early rows indicative
+Resin,Resin Price Dataset (June 2024 - Sep 2026).xlsx,USD/kg * 1000 -> USD/t; preserved irregular dates,USD/kg,USD/kg & USD/t,21,17,17 irregular obs; NOT_RECOMMENDED
+Natural Rubber,Natural Rubber Yearly Trends India (2005-06 to 2024-25) (1).xlsx,INR/100kg * 10 -> INR/t; preserved annual FY,INR/100kg (Annual),INR/t (Annual),29,20,ANNUAL_ONLY
+Container Freight,Weekly Container freight rate index worldwide.xlsx,Preserved Date_Raw; flagged 1-day auto-fill anomaly,USD/40ft,USD/40ft,170,165,CRITICAL: Median step=1d (2023-01-12 to 2023-06-25) vs weekly 2023-2026 description

@@ -1,0 +1,38 @@
+{
+  "baseline": {
+    "provenance": "CASE_BRIEF_BASELINE",
+    "revenue_cr": 3421.0,
+    "ebitda_cr": 297.7,
+    "ebitda_margin_pct": 8.7,
+    "pat_cr": 37.6,
+    "raw_material_spend_cr": 1223.0,
+    "oem_pass_through_ratio": 0.5,
+    "baseline_container_freight_usd": 2172.0,
+    "annual_inbound_ocean_freight_cr": 25.0,
+    "effective_tax_rate": 0.2517,
+    "tax_rate_assumption_id": "TX01"
+  },
+  "reconciliation": [
+    {
+      "Metric": "Revenue (INR Cr)",
+      "Case_Brief_FY25_Modelled": 3421.0,
+      "Supplied_Workbook_2024": 3365.0,
+      "Supplied_Workbook_2025": 3863.0,
+      "Reconciliation_Note": "Case brief uses standardized FY25 modelled baseline; workbook reflects Statista reporting scope"
+    },
+    {
+      "Metric": "Operating Profit / EBITDA (INR Cr)",
+      "Case_Brief_FY25_Modelled": 297.7,
+      "Supplied_Workbook_2024": 177.65,
+      "Supplied_Workbook_2025": 192.85,
+      "Reconciliation_Note": "Workbook reports Operating Profit (EBIT), not EBITDA; D&A not supplied"
+    },
+    {
+      "Metric": "Net Profit / PAT (INR Cr)",
+      "Case_Brief_FY25_Modelled": 37.6,
+      "Supplied_Workbook_2024": 37.65,
+      "Supplied_Workbook_2025": 107.48,
+      "Reconciliation_Note": "Case brief PAT (37.6 Cr) aligns closely with 2024 Net Income (37.65 Cr)"
+    }
+  ]
+}

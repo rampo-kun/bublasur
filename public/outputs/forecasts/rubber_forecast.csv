@@ -1,0 +1,2 @@
+Material,Forecast_Date,Horizon,Predicted_Value,Latest_Observed,Unit,Model_PI_95_Lower,Model_PI_95_Upper,Approx_Range_Lower,Approx_Range_Upper,Interval_Methodology,Interval_Calibration_Status,Selected_Model,Validation_RMSE,Holdout_RMSE,Holdout_MAPE_Pct,Training_Period,Forecast_Status,Provenance,Data_Quality_Warning
+rubber,2024-12-31,1Y,210494.2,199850.0,INR/tonne,156873.32,264115.08,,,Model_Parametric_ARIMA_95_PI,PARAMETRIC_MODEL_BASED,ARIMA_1_1_1,24215.717,22333.691,13.28,2005-03-31 to 2024-03-31,ANNUAL_ONLY,MODELLED,Annual FY series only

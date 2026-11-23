@@ -1,0 +1,24 @@
+File_Keyword,Usage_Status,Target_Module,Verified_Unit,Notes
+Copper Price,USED_IN_MODEL,Module 1 (Forecast) & Module 2/3,USD/tonne,Monthly LME Copper
+Nickel Price List,USED_IN_MODEL,Module 1 (Forecast) & Module 2/3,USD/tonne,Monthly LME Nickel
+Aluminium Price,USED_IN_MODEL,Module 1 (Forecast) & Module 2/3,USD/tonne,Multi-block sheet unpivoted to Monthly LME Cash
+Steel_Price_Dataset,USED_IN_MODEL,Module 1 (Forecast) & Module 2/3,INR/tonne (incl. GST),Monthly HR/CR Coil; Iron Ore/Coking Coal partial blanks preserved
+Resin Price Dataset,USED_IN_MODEL,Module 1 (NOT_RECOMMENDED),USD/kg,17 irregular observations; monthly forecasting not supported
+Natural Rubber Yearly Trends,USED_IN_MODEL,Module 1 (ANNUAL_ONLY),INR/100kg,20-yr Annual FY RSS-4; preserved at annual frequency
+Weekly Container freight,USED_IN_MODEL,Module 1 (EXPERIMENTAL) & Module 4,USD/40ft container,AUDIT FINDING: 165 rows have 1-day Excel date increments (2023-01-12 to 2023-06-25) despite weekly 2023-2026 description
+Forex Exchange Rate,USED_IN_MODEL,Module 1 (FX) & Module 3/4,INR/USD,Daily RBI Ref & Interbank Close
+Daily_Chokepoints_Data,USED_IN_MODEL,Shipping Risk & Module 2 Context,Vessel count / DWT,Daily vessel transit across global chokepoints
+GSCPI,USED_IN_MODEL,Shipping Risk & Macro EDA,Std. Dev. Index,Monthly Global Supply Chain Pressure Index
+brent-daily oil,CONTEXT_ONLY,Macro EDA & Correlation,USD/barrel,Daily Brent crude oil benchmark
+revenue_of_rane_madras,USED_IN_MODEL,Financial Reconciliation,Billion INR,Annual 2021-2025
+gross_profit_of_rane_madras,USED_IN_MODEL,Financial Reconciliation,Billion INR,Annual 2021-2025
+operating_profit_of_rane_madras,USED_IN_MODEL,Financial Reconciliation,Million INR,Annual 2021-2025
+net_income_of_rane_madras,USED_IN_MODEL,Financial Reconciliation,Million INR,Annual 2021-2025
+ACMA_Auto_Component_Industry_FY23,CONTEXT_ONLY,Industry Context,INR Cr / USD Bn,Industry-level FY23 benchmark (not Rane-specific)
+ACMA_Auto_Component_Industry_FY24,CONTEXT_ONLY,Industry Context,INR Cr / USD Bn,Industry-level FY24 benchmark (not Rane-specific)
+ACMA_Auto_Component_Industry_FY25,CONTEXT_ONLY,Industry Context,INR Cr / USD Bn,Industry-level FY25 benchmark (not Rane-specific)
+value_of_automobile_components_exported,CONTEXT_ONLY,Industry Context,Billion USD,India auto component exports by product
+annual_freight_liftings,CONTEXT_ONLY,Logistics Context,1000 TEUs,ONE annual liftings by trade route (2019-2024)
+Railway frieght rate,UNUSED,None (Domestic Rail),INR,Excluded from ocean container & BOM engine
+nickel imported volume,CONTEXT_ONLY,Supply Context,Tonnes,India nickel import volume 2010-2021
+Resin Data import,CONTEXT_ONLY,Supply Context,USD Million,HS-code resin import values FY20-FY21

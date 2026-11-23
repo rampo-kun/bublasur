@@ -1,0 +1,28 @@
+{
+  "project": "XOVATE - Rane (Madras) Materials Management Decision Engine",
+  "version": "2.3.0-final-validated",
+  "generated_at": "2026-11-23T08:03:44.059802Z",
+  "provenance_policy": "Strict separation of OBSERVED, DERIVED, MODELLED, CASE_BRIEF_BASELINE, STATUTORY_TAX, and MISSING_DATA_ILLUSTRATIVE.",
+  "validation_policy": "Strict 3-way split: expanding-window validation inside train_pool only; final holdout untouched until after model selection.",
+  "uncertainty_policy": "Parametric ARIMA 95% PIs export exclusively to Model_PI_95_Lower/Upper (PARAMETRIC_MODEL_BASED); heuristic/empirical ranges export exclusively to Approx_Range_Lower/Upper (APPROXIMATE_UNCALIBRATED_RANGE).",
+  "targets_exported": [
+    "copper",
+    "nickel",
+    "aluminium",
+    "hr_steel",
+    "cr_steel",
+    "usd_inr",
+    "freight",
+    "resin",
+    "rubber"
+  ],
+  "nextjs_api_contract": {
+    "forecasts": "/api/forecasts/[material] -> outputs/forecasts/[material]_forecast.csv (fields: Predicted_Value, Model_PI_95_Lower, Model_PI_95_Upper, Approx_Range_Lower, Approx_Range_Upper, Interval_Methodology, Interval_Calibration_Status)",
+    "scenarios": "/api/scenarios -> outputs/scenarios/scenario_baselines.json",
+    "actions_financial": "/api/actions/financial -> outputs/scenarios/actions_financially_evaluable_red_sea.csv",
+    "actions_qualitative": "/api/actions/qualitative -> outputs/scenarios/actions_qualitative_only_red_sea.csv",
+    "assumptions": "/api/assumptions -> outputs/assumptions/assumption_register.csv",
+    "financial_baseline": "/api/financials -> outputs/analytics/financial_baseline.json",
+    "supply_chain": "/api/supply-chain -> outputs/analytics/supply_chain_indicators.csv"
+  }
+}
