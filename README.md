@@ -1,47 +1,76 @@
-# Rane (Madras) — Materials Management Decision Intelligence
+# Rane (Madras) Materials Intelligence Platform
 
-An enterprise-style Next.js decision-support interface for the Rane (Madras) Materials Management Department. The application integrates the supplied Python decision-engine exports and covers all five modules in the hackathon brief:
+Enterprise decision-support workspace for Materials Management, Finance, Production, Logistics, Quality, HR and Sales. The application brings market forecasts, disruption planning, financial sensitivity, inventory runway and procurement actions into one operating view.
 
-1. Price and freight forecasts across copper, nickel, aluminium, HR steel, CR steel, phenolic resin, natural rubber, USD/INR and 40-ft container freight.
-2. What-if scenario simulation with the five brief presets and independent shock controls.
-3. Interactive financial recalculation for landed-cost exposure, EBITDA, margin and simplified PAT.
-4. Container and inventory planning, including payload utilisation, freight per tonne, inventory cover, reorder points and stock-out alerts.
-5. Prescriptive action matrix with financially evaluable and qualitative-only recommendations, financial before/after values, dependencies and affected functions.
+## Run the application
 
-## Run locally
+Requirements: Node.js 18.17+ (Node 20 LTS recommended).
 
-1. Use Node.js 18.17+ (Node 20 LTS recommended).
-2. In the project directory run:
-   ```bash
-   npm install
-   npm run dev
-   ```
-3. Open http://localhost:3000
-
-For a production build:
 ```bash
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000`. The dashboard is server-rendered from the curated model exports and exposes the same dataset through `GET /api/dashboard`.
+
+Production verification:
+
+```bash
+npm run lint
 npm run build
 npm start
 ```
 
-## Data integrity and limitations
+## Decision modules
 
-- Source exports are included under `public/outputs/`; their contents are preserved.
-- The dashboard reads exported CSV/JSON outputs. It does not refit forecasting models at runtime.
-- Forecasts retain model status, provenance, interval methodology, calibration status and source-specific quality warnings.
-- The forecast visualisation supports line, bar and tabular views across the available horizons.
-- Scenario presets, BOM weights, inventory and container defaults are illustrative where marked in the source exports. They are not verified Rane ERP or procurement values.
-- PAT is a simplified sensitivity bridge; it does not model changes in D&A, interest, working capital or deferred tax.
-- Supplier-level identifiers are not present in the supplied action exports; supplier-specific assignment requires a verified supplier master.
-- The resin series is short and irregular, natural rubber is annual, and the freight source has a date-cadence issue. Treat these outputs with the warnings shown in the interface.
-- Financial baseline reconciliation is surfaced in the audit module; the case brief and supplied workbook reporting scopes differ.
+1. **Market intelligence** — Copper, nickel, aluminium, HR steel, CR steel, phenolic resin, natural rubber, USD/INR and 40-ft freight forecasts. Forecast horizons, model selection, holdout metrics, uncertainty labels and data-quality warnings are retained.
+2. **Scenario planning** — Base case, Red Sea/Hormuz crisis, metal shock, tariff/FX escalation and demand recession, with independent commodity, freight, FX, demand and OEM pass-through controls.
+3. **Financial impact chain** — Immediate recalculation of gross shock, OEM recovery, retained cost, EBITDA, margin and simplified PAT.
+4. **Inventory & containers** — Inventory cover, reorder point, safety stock, payload utilisation and freight per tonne.
+5. **Procurement actions** — Financially evaluable and qualitative-only action recommendations, cost/benefit/net impact where supported, dependencies and affected functions.
+
+## Calculation reference
+
+The interactive scenario engine uses the exported FY25 modelled baseline and explicitly labelled illustrative parameters.
+
+- Commodity shock = annual raw-material spend × illustrative material share × demand factor × commodity shock percentage.
+- Freight shock = annual inbound ocean-freight spend × demand factor × freight shock percentage.
+- FX shock = exported USD-exposed spend proxy × demand factor × FX shock percentage.
+- Gross shock = commodity shock + freight shock + FX shock.
+- OEM recovery = gross shock × OEM pass-through percentage.
+- Retained cost = gross shock − OEM recovery.
+- Scenario EBITDA = baseline EBITDA − retained cost.
+- Scenario revenue = baseline revenue × demand factor.
+- Scenario EBITDA margin = scenario EBITDA ÷ scenario revenue × 100.
+- Simplified scenario PAT = baseline PAT − retained cost × (1 − effective tax rate).
+
+The PAT bridge is deliberately simplified. It does not model D&A, interest, working capital or deferred tax. Division-level cost allocation is not presented because verified division BOM and cost-centre mappings were not included in the supplied files.
+
+## Data integrity and operating boundaries
+
+- The original exported CSV/JSON artefacts are retained under `public/outputs/`.
+- The application reads the exported model artefacts; it does not refit models in the web runtime.
+- Model-based parametric prediction intervals and approximate uncalibrated ranges are displayed as different interval types.
+- Resin has only 17 irregular observations; monthly forecasting is not recommended.
+- Natural rubber is annual-frequency data; its forecast is labelled annual-only.
+- Freight has a source date-cadence issue and is labelled experimental.
+- Illustrative BOM weights, inventory, container payload, lead-time and stock defaults are not verified ERP values.
+- Supplier names/IDs are absent from the action exports. Supplier-specific execution requires an approved supplier master.
+- Financial baseline reconciliation is surfaced in the Governance & Data Trace module.
+
+## Quality and governance
+
+The source notebook records 11 automated quality-control categories covering unit conversions, date ordering, duplicate dates, missing-data handling, leakage-free temporal splits, forecast horizons and interval labelling, scenario recalculation, financial calculations, procurement action separation, inventory/input validation and assumption traceability. The exported split audit, model comparison, assumption register, transformation log and data catalogue are available in the application.
+
+See `docs/DATA_TRACE.md` for source-to-module lineage and `docs/OPERATING_MODEL.md` for operating boundaries and deployment controls.
 
 ## Architecture
 
-- `app/page.tsx` — server-rendered dashboard entry
-- `components/DecisionDashboard.tsx` — navigation, five modules, scenario controls and visualisations
-- `app/api/dashboard/route.ts` — JSON API for dashboard data
-- `public/outputs/` — original exported outputs and model artefacts
-- `lib/data.ts` — server-side CSV/JSON loading
+- `app/page.tsx` — application entry
+- `components/DecisionDashboard.tsx` — enterprise workspace and five decision modules
+- `app/api/dashboard/route.ts` — dashboard data API
+- `lib/data.ts` — server-side CSV/JSON readers
+- `public/outputs/` — curated model outputs and trained model artefacts
+- `docs/` — data lineage and operating model documentation
 
-This is a decision-support prototype, not a live ERP integration or a substitute for verified procurement, finance or supplier data.
+This application is a decision-support layer. It is not connected to Rane's ERP, supplier portals, live commodity feeds or logistics execution systems in the supplied implementation. Connect approved enterprise sources and access controls before production operational deployment.
