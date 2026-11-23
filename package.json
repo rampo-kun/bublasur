@@ -1,12 +1,12 @@
 {
-  "name": "xovate-rane-decision-engine",
+  "name": "rane-madras-mmd-decision-intelligence",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "tsc --noEmit"
   },
   "dependencies": {
     "next": "14.2.31",

@@ -1,41 +1,47 @@
-# XOVATE ’26 — Rane (Madras) MMD Decision Engine
+# Rane (Madras) — Materials Management Decision Intelligence
 
-A Next.js dashboard built around the exported outputs in the supplied `outputs.zip`. It covers all five brief modules:
-1. Price & freight forecasts
-2. Scenario what-if simulator
-3. Live financial recalculation
-4. Container & inventory runway
-5. Prescriptive procurement action matrix
+An enterprise-style Next.js decision-support interface for the Rane (Madras) Materials Management Department. The application integrates the supplied Python decision-engine exports and covers all five modules in the hackathon brief:
+
+1. Price and freight forecasts across copper, nickel, aluminium, HR steel, CR steel, phenolic resin, natural rubber, USD/INR and 40-ft container freight.
+2. What-if scenario simulation with the five brief presets and independent shock controls.
+3. Interactive financial recalculation for landed-cost exposure, EBITDA, margin and simplified PAT.
+4. Container and inventory planning, including payload utilisation, freight per tonne, inventory cover, reorder points and stock-out alerts.
+5. Prescriptive action matrix with financially evaluable and qualitative-only recommendations, financial before/after values, dependencies and affected functions.
 
 ## Run locally
-1. Install Node.js 18.17+ (Node 20 LTS recommended).
-2. Extract this ZIP.
-3. In the project folder run:
+
+1. Use Node.js 18.17+ (Node 20 LTS recommended).
+2. In the project directory run:
    ```bash
    npm install
    npm run dev
    ```
-4. Open http://localhost:3000
+3. Open http://localhost:3000
 
-For a production build: `npm run build && npm start`.
+For a production build:
+```bash
+npm run build
+npm start
+```
 
-## Data and provenance
-- Source exports are included under `public/outputs/` exactly as received.
-- The dashboard reads the exported CSV/JSON data; it does not refit forecasting models.
-- Forecasts retain `Forecast_Status`, `Provenance`, interval methodology and calibration status.
-- The scenario presets and BOM weights are illustrative/unverified where identified in the source outputs. Inventory and container defaults are illustrative.
-- PAT change is a simplified bridge based on TX01; it does not model changes in D&A, interest, working capital or deferred tax.
-- Forecast data quality notes are displayed, including the freight source's date-cadence issue and the irregular resin/annual rubber frequencies.
-- Do not present illustrative inputs as verified Rane operational data.
+## Data integrity and limitations
+
+- Source exports are included under `public/outputs/`; their contents are preserved.
+- The dashboard reads exported CSV/JSON outputs. It does not refit forecasting models at runtime.
+- Forecasts retain model status, provenance, interval methodology, calibration status and source-specific quality warnings.
+- The forecast visualisation supports line, bar and tabular views across the available horizons.
+- Scenario presets, BOM weights, inventory and container defaults are illustrative where marked in the source exports. They are not verified Rane ERP or procurement values.
+- PAT is a simplified sensitivity bridge; it does not model changes in D&A, interest, working capital or deferred tax.
+- Supplier-level identifiers are not present in the supplied action exports; supplier-specific assignment requires a verified supplier master.
+- The resin series is short and irregular, natural rubber is annual, and the freight source has a date-cadence issue. Treat these outputs with the warnings shown in the interface.
+- Financial baseline reconciliation is surfaced in the audit module; the case brief and supplied workbook reporting scopes differ.
 
 ## Architecture
-- `app/page.tsx`: dashboard shell
-- `components/DecisionDashboard.tsx`: five modules and interactive controls
-- `app/api/dashboard/route.ts`: JSON API exposing dashboard data
-- `public/outputs/`: original export bundle
-- `lib/data.ts`: server-side CSV/JSON loading
 
-## API
-`GET /api/dashboard` returns baseline, reconciliation, forecasts, scenarios, supply-chain indicators, action matrices, assumption register, model metadata and metrics.
+- `app/page.tsx` — server-rendered dashboard entry
+- `components/DecisionDashboard.tsx` — navigation, five modules, scenario controls and visualisations
+- `app/api/dashboard/route.ts` — JSON API for dashboard data
+- `public/outputs/` — original exported outputs and model artefacts
+- `lib/data.ts` — server-side CSV/JSON loading
 
-The original source files are preserved under `public/outputs`. This package is a frontend integration layer, not a replacement for the Python decision engine.
+This is a decision-support prototype, not a live ERP integration or a substitute for verified procurement, finance or supplier data.
